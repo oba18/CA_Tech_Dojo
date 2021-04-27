@@ -1,0 +1,21 @@
+version: '3'
+services:
+  api:
+    container_name: 'ca-tech-job-api'
+    build: ./api
+    tty: true
+    volumes:
+      - ./api:/api
+  db:
+    container_name: 'ca-tech-job-db'
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - ca-tech-job-db:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    tty: true
+
+volumes:
+  ca-tech-job-db:
